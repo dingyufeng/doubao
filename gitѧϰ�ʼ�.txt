@@ -1,3 +1,4 @@
+参考：http://rogerdudler.github.io/git-guide/index.zh.html
 创建新仓库
 1、创建新文件夹，打开，然后执行
 	git init
@@ -23,6 +24,39 @@
 	
 5、推送改动
 	你的改动现在已经在本地仓库的HEAD中了，执行如下命令以将这些改动提交到远端仓库：
+	git push origin master
+	可以把master换成你想要推送的任何分支。
+	如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：
+	git remote add origin <server>
+	这样你就能够将你的改动推送到所添加的服务器上去了。
+	
+6、分支
+	分支是用来将特性开发绝缘开来的。在你创建仓库的时候，master是“默认的”。在其它分支上进行开发，完成后再将它们合并到主分支上。
+创建一个叫做"feature_x"的分支，并切换过去：
+	git checkout -b feature_x
+	切换回主分支：
+	git checkout master
+	再把新建的分支删掉：
+	git branch -d feature_x
+	除非你将分支推送到远端仓库，不然该分支就是不为他人所见的：
+	git push origin <bransh>  #推送分支到远端服务器
+	
+7、更新与合并
+	要更新你的本地仓库至最新改动，执行：
+	git pull
+	以在你的工作目录中获取(fetch)并合并(merge)远端的改动。要合并其他分分支到你的当前分支（例如master），执行：
+	git merge <branch>
+	两种情况下，git都会尝试去自动合并改动。不幸的是，自动合并并非次次都能成功，并可能导致冲突(conflicts)。这时候就需要你修改
+这些文件来人肉合并这些冲突(conflicts)了。改完之后，你需要执行如下命令以将它们标记为合并成功：
+	git add <filename>
+	在合并改动之前，也可以使用如下命令查看：
+	git diff <source_branch> <target_branch>
+	
+
+	
+###########################################################################################################################################
+1、在clone完成之后，git会自动为你将远程仓库命名为origin(origin只相当于一个别名，运行git remote -v或者查看.git/config可以看到origin的含义)
+	
 
 
 
